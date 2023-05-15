@@ -49,7 +49,7 @@ class AuthenticationController extends BaseController {
         //luu lai username, password
         _saveRememberPassword(userAccount!..password = formSignInKey.currentState?.value['password']);
 
-        Get.toNamed('/');
+        Get.toNamed('/home');
       });
     }
     // else {
@@ -79,7 +79,7 @@ class AuthenticationController extends BaseController {
   }
 
   void onTryApp() {
-    Get.toNamed('/');
+    Get.toNamed('/home');
   }
 
   void saveAccount(UsersModel? user) {
