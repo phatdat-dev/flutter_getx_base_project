@@ -5,12 +5,12 @@ Hi vọng sẽ giúp ích được cho bạn!
 
 ## 📝 Mục lục
 
-- [Cài đặt](#Cài-đặt)
+- [Cài đặt](#🛠-Cài-đặt)
   - [Clone từ source này](#Clone-từ-source-này)
   - [Sử dụng Get Cli](#Sử-dụng-get-cli)
     - [Cài đặt Get cli](#Cài-đặt-GET-CLI)
     - [Get init](#Get-init)
-- [Tính năng](#Tính-năng)
+- [Tính năng](#🚀-Tính-năng)
 - [Giao diện](#Giao-diện)
 
 ## 🛠 Cài đặt
@@ -96,7 +96,7 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 Full code file `.zshrc` của mình được cấu hình như sau:
 
-```bash
+```shell
 export PATH="$PATH:$HOME/Program Files/flutter/bin"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
@@ -138,5 +138,75 @@ Vậy là xong !. `Lưu ý` rằng quá trình này sẽ xóa hết lib/ của b
 Còn mới vừa tạo thì thôi.
 
 ## 🚀 Tính năng
+
+Lưu ý: mình chỉ liệt kê 1 số cái thường dùng. muốn biết thêm về Get Cli, bạn có thể tham khảo bản gốc [tại đây](https://pub.dev/packages/get_cli)
+
+### **Generate Module**
+
+```bash
+get create page:name
+```
+
+Lệnh này cho phép bạn tạo các modules nhanh bao gồm bộ 3 [Controller, Binding, View]
+
+Tự động tạo đường dẫn AppPages, AppRoutes
+
+Có thể tạo modules bên trong modules khác
+
+```bash
+get create page:name on other_module
+```
+
+Khi sử dụng `on` để tạo modules mới, CLI sẽ sử dụng [children pages](https://github.com/jonataslaw/getx/blob/master/CHANGELOG.md#3210---big-update).
+
+### **Generate Model**
+
+```bash
+get generate model on response with assets/import_response.json
+```
+
+Khi sử dụng template của mình, trong assets có file sẵn `import_response.json`, chỉ việc ném json cần generate model vào đây. Sẽ tự tạo model theo cấu trúc `BaseModel`
+Nếu thấy lỗi đỏ file là do thiếu import, cứ bấm gợi ý và chọn auto import file base_model.dart
+
+### **Generate Translation**
+
+```bash
+get generate locales assets/translations
+```
+
+Lệnh này sẽ tạo ra file chuyển đổi ngôn ngữ dựa theo json.
+Để sử dụng chỉ việc LocaleKeys.KeyName.tr
+Sử dụng hàm có sẵn mà template này có `TranslationService.changeLocale` để chuyển ngôn ngữ và lưu vào hệ thống
+
+### **API Call**
+
+Tùy chỉnh BaseURL tại `/app/core/config/api_url.dart` > `base_url`
+
+Gọi api đơn giản với hàm `apiCall.onRequest` tại BaseController
+
+```dart
+final UsersModel? result = await apiCall.onRequest(
+      ApiUrl.post_auth_login(),
+      RequestMethod.POST,
+      body: {
+        'userName': 'foo',
+        'password': 'bar',
+      },
+      baseModel: UsersModel(),
+    );
+```
+
+Các tham số của `onRequest`
+
+| Type                    | Parameter       | Description                                                                                                                    |
+| :---------------------- | :-------------- | :----------------------------------------------------------------------------------------------------------------------------- |
+| `String`                | `url`           | **Required**. Đường dẫn api (vd: '/auth/login') key                                                                            |
+| `RequestMethod`         | `method`        | **Required**. GET, POST, PUT, PATH, DELETE key                                                                                 |
+| `dynamic`               | `body`          | Có thể truyền vào FormData để gửi hình ảnh, hoặc truyền Map<String,dynamic>, hoặc truyền vào object model có kế thừa BaseModel |
+| `BaseModel?`            | `baseModel`     | Khi api trả về, mong muốn parse thành Model nào key                                                                            |
+| `Map<String, dynamic>?` | `queryParam`    | Thường dùng cho phương thức GET để tìm kiếm key                                                                                |
+| `bool?`                 | `isShowLoading` | Muốn hiện loadding ở api này hay không (mạc định true) key                                                                     |
+
+Có thể tùy chỉnh UI `LoaddingWidget` tại `/app/custom/widget/loadding_widget.dart`
 
 ## Giao diện
