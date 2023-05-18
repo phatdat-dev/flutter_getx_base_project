@@ -12,6 +12,7 @@ Hi vọng sẽ giúp ích được cho bạn!
     - [Get init](#Get-init)
 - [Tính năng](#🚀-Tính-năng)
 - [Giao diện](#Giao-diện)
+- [Thêm](#Thêm)
 
 ## 🛠 Cài đặt
 
@@ -200,13 +201,87 @@ Các tham số của `onRequest`
 
 | Type                    | Parameter       | Description                                                                                                                    |
 | :---------------------- | :-------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| `String`                | `url`           | **Required**. Đường dẫn api (vd: '/auth/login') key                                                                            |
-| `RequestMethod`         | `method`        | **Required**. GET, POST, PUT, PATH, DELETE key                                                                                 |
+| `String`                | `url`           | **Required**. Đường dẫn api (vd: '/auth/login')                                                                                |
+| `RequestMethod`         | `method`        | **Required**. GET, POST, PUT, PATH, DELETE                                                                                     |
 | `dynamic`               | `body`          | Có thể truyền vào FormData để gửi hình ảnh, hoặc truyền Map<String,dynamic>, hoặc truyền vào object model có kế thừa BaseModel |
-| `BaseModel?`            | `baseModel`     | Khi api trả về, mong muốn parse thành Model nào key                                                                            |
-| `Map<String, dynamic>?` | `queryParam`    | Thường dùng cho phương thức GET để tìm kiếm key                                                                                |
-| `bool?`                 | `isShowLoading` | Muốn hiện loadding ở api này hay không (mạc định true) key                                                                     |
+| `BaseModel?`            | `baseModel`     | Khi api trả về, mong muốn parse thành Model nào                                                                                |
+| `Map<String, dynamic>?` | `queryParam`    | Thường dùng cho phương thức GET để tìm kiếm                                                                                    |
+| `bool?`                 | `isShowLoading` | Muốn hiện loadding ở api này hay không (mạc định true)                                                                         |
 
 Có thể tùy chỉnh UI `LoaddingWidget` tại `/app/custom/widget/loadding_widget.dart`
 
+### **Printt**
+
+Tự động Printt màu của API khi bạn Request và có Response trả về
+![Printt_Log_API](assets/assets_readme/printt_log_api.png)
+Sử dụng như hàm `print()` của dart để truyền tham số
+
+```dart
+import '/app/core/utils/utils.dart';
+
+void printColor(){
+    Printt.defaultt("defaultt Color");
+    Printt.black("black Color");
+    Printt.red("red Color");
+    Printt.green("green Color");
+    Printt.yellow("yellow Color");
+    Printt.blue("blue Color");
+    Printt.magenta("magenta Color");
+    Printt.cyan("cyan Color");
+    Printt.white("white Color");
+    Printt.reset("reset Color");
+}
+```
+
+![Printt](assets/assets_readme/printt_color.png)
+
+### **Search**
+
+Trong `HelperReflect` có sẵn cơ bản hàm Search bạn có thể tham khảo cách dùng dưới đây tại `HelperWidget.showSearchDropDownApiCall`
+
+- Nếu bạn đã có danh sách data có sẵn và chỉ cần filter dựa theo đó, có thể sử dụng `HelperWidget.showSearchDropDown`
+- Nếu bạn có api tìm kiếm và phải gọi khi tìm bạn có thể sử dụng `HelperWidget.showSearchDropDownApiCall`
+
+Để tránh việc gọi api liên tục, giới hạn query khi dừng là `1 giây`
+
+Dưới đây mình sẽ ví dụ ở `showSearchDropDownApiCall`:
+
+![HelperWidget.showSearchDropDownApiCall.Code](assets/assets_readme/helperwidget_search_api.png)
+
+![HelperWidget.showSearchDropDownApiCall.UI](assets/assets_readme/helperwidget_search_ui.png)
+
+### **Khác**
+
+Ngoài các tính năng cơ bản trên, bạn có thể tham khảo các hàm hỗ trợ khác:
+| Function | Description |
+| ----------------- | ------------------------------------------------------------------ |
+| LimitRangeTextInput | `TextFormField` có tham số vào là `inputFormatters`, bạn có thể đặt nó ở đây để giới hạn con số người dùng nhập vào |
+| Helper.tryFormatDateTime | Thử định dạng chuỗi theo ngày-tháng-năm, trả về nguyên mẫu nếu lỗi |
+| Helper.limitShowList | Giới hạn danh sách hiển thị |
+| Helper.randomColor/randomNumber | y như ý nghĩa của tên hàm! |
+| Helper.listGenerateSeparated | Hoạt động tương tự ListView.separated, chèn phần tử vào giữa các vị trí của danh sách |
+| Helper.readFileJson | Đọc file Json của ban5 |
+| Helper.containsToLowerCase | So sánh giữa 2 chuổi (thường dùng cho tìm kiem61) |
+| Helper.generateIdFromDateTimeNow | Tạo ID theo thời gian hiện tại |
+| Helper.convertToListMap | API thường trả về `List<dynamic>`, bạn muốn ép nó sang `List<Map<String,dynamic>>` có thể sử dụng hàm này |
+| HelperWidget.showToast | Hiện thông báo nổi (thường dùng cho lỗi api) |
+| HelperWidget.highlightOccurrences | Tô đậm chữ tìm kiếm |
+| HelperWidget.showSnackBar | Hiện thông báo ở phía dưới (Success ✅/Error X) |
+| HelperWidget.buildImage/buildFile | Tạo sẵn widget hiển thị hình ảnh/file (click vào thì phóng to) |
+| HelperWidget.showSearchDropDown | phiên bản khác của DropdownButton nhưng có tìm kiếm |
+
+Ngoài ra có `class NotificationService` viết sẵn các hàm cơ bản để push noti.
+Cấu hình notify native mình sẽ làm và updat sau này ở 1 commit riêng
+
 ## Giao diện
+
+## Thêm
+
+### **Binding**
+
+Bạn có thắc mắc Binding ở GetPage là gì ?
+Theo cách mình hiểu đơn giản của GetX
+
+`binding: BindingsBuilder(() => Get.lazyPut(() => HomeController()))`
+
+Nó giống như hỗ trợ xóa Controller sau khi màn hình đó được xóa khỏi Stack, và giúp cho tự khởi tạo Controller sau khi vào Page.
