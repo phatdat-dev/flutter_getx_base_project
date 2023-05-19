@@ -105,9 +105,9 @@ class BaseConnect extends GetConnect {
   // -------------------------
 
   /// [body] gửi request cho các phương thức POST, PUT, PATCH
-  /// 
+  ///
   /// [queryParam] gửi request dạng queryParam cho các phương thức GET
-  /// 
+  ///
   /// [baseModel] dùng để parse dữ liệu mong muốn trả về
   Future<dynamic> onRequest<T extends BaseModel>(
     String url,

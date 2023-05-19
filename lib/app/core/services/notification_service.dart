@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 
@@ -80,11 +81,8 @@ class NotificationService extends GetxService {
   Future<void> showNotification(RemoteMessage message) async {
     ByteArrayAndroidBitmap? imageBitMap;
     if (message.data['image'] != null) {
-      final response = await Get.find<GetConnect>().get(message.data['image']);
-      List<int> bodyBytes = [];
-      await for (List<int> chunk in response.bodyBytes!) {
-        bodyBytes.addAll(chunk);
-      }
+      Uint8List bodyBytes = (await NetworkAssetBundle(Uri.parse(message.data['image'])).load(message.data['image'])).buffer.asUint8List();
+
       imageBitMap = ByteArrayAndroidBitmap.fromBase64String(base64Encode(bodyBytes));
     }
 
