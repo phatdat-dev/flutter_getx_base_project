@@ -7,7 +7,8 @@ Hi vọng sẽ giúp ích được cho bạn!
 
 - [Cài đặt](#🛠-Cài-đặt)
   - [Clone từ source này](#Clone-từ-source-này)
-  - [Sử dụng Get Cli](#Sử-dụng-get-cli)
+  - [Hoặc sử dụng Get Cli](#Hoặc-sử-dụng-get-cli)
+  - [Cài FlutterFire](#Cài-FlutterFire)
     - [Cài đặt Get cli](#Cài-đặt-GET-CLI)
     - [Get init](#Get-init)
 - [Tính năng](#🚀-Tính-năng)
@@ -59,7 +60,7 @@ flutter:
     - assets/translations/
 ```
 
-### Sử dụng Get Cli
+### Hoặc sử dụng Get Cli
 
 #### **Cài đặt GET CLI**
 
@@ -135,8 +136,17 @@ get init
 Nhập con số để tạo mẫu (nhấn enter 2 lần để tạo template của mình)
 ![Get Init](assets/assets_readme/get_init_with_template.png)
 
-Vậy là xong !. `Lưu ý` rằng quá trình này sẽ xóa hết lib/ của bạn. Nên migrate từ từ sang nếu bạn đã có project sẵn.
-Còn mới vừa tạo thì thôi.
+### Cài FlutterFire
+
+[Tham khảo tại đây để cài FlutterFire CLI](https://firebase.flutter.dev/docs/overview)
+
+Gõ lệnh này để tự động cấu hình config firebase trong 1 nốt nhạc
+
+```flutterfire
+flutterfire configure
+```
+
+Vậy là xong !.
 
 ## 🚀 Tính năng
 
@@ -248,7 +258,7 @@ Dưới đây mình sẽ ví dụ ở `showSearchDropDownApiCall`:
 
 ![HelperWidget.showSearchDropDownApiCall.Code](assets/assets_readme/helperwidget_search_api.png)
 
-![HelperWidget.showSearchDropDownApiCall.UI](assets/assets_readme/helperwidget_search_ui.png)
+![HelperWidget.showSearchDropDownApiCall.UI](assets/assets_readme/helperwidget_search_ui.gif)
 
 ### **Khác**
 
