@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter_getx_base_project/app/core/config/api_url.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 
 import '/app/core/base/base_model.dart';
+import '/app/core/config/api_url.dart';
 import '/app/core/utils/utils.dart';
 import '/app/custom/widget/loadding_widget.dart';
 import '/app/modules/authentication/controllers/authentication_controller.dart';

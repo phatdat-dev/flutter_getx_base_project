@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_base_project/app/core/base/base_project.dart';
-import 'package:flutter_getx_base_project/app/core/services/notification_service.dart';
+import '/app/core/base/base_project.dart';
+import '/app/core/services/notification_service.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 

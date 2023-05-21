@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_getx_base_project/app/core/utils/extension/app_extension.dart';
+
+import '/app/core/utils/extension/app_extension.dart';
 
 class LimitRangeTextInput extends TextInputFormatter {
   LimitRangeTextInput({

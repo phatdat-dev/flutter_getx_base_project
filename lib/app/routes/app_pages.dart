@@ -1,6 +1,6 @@
-import 'package:flutter_getx_base_project/app/modules/home/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
+import '/app/modules/home/controllers/home_controller.dart';
 import '../modules/authentication/bindings/authentication_binding.dart';
 import '../modules/authentication/views/authentication_view.dart';
 import '../modules/home/views/home_view.dart';
